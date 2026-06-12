@@ -3,59 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Commission Request Form</title>
+    <title>Gabriel Perdue's Pixel Art Shop</title>
 	<link rel="icon" type="image/x-icon" href="https://art.pixilart.com/sr5z5c55ac249caws3.png">
     <link href="https://fonts.googleapis.com/css2?family=Jersey+10&family=Jersey+15&family=Tiny5&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <section>
-        <h2>Commission Order Form</h2>
-        <form id="sheetForm">
-            
-            <div>
-                <strong><label for="username">Your Name</label></strong>
-                <input type="text" id="username" name="username" required placeholder="e.g., John Doe">
+    <header>
+        <h1>MY PIXEL ART</h1>
+        <p>Character Designer & Animator</p>
+        <div class="status open"><a href="form.html" target="_blank">Commission Me!</a></div>
+    </header>
+
+    <hr>
+
+    <section class="portfolio">
+        <h2>My Work and Prices*</h2>
+        <div class="gallery">
+            <div class="art-card">
+                <img src="https://art.pixilart.com/sr5z5c55ac249caws3.png" alt="Pixel Art 1">
+                <h3>Icons</h3>
+                <p>$10 - $20</p>
             </div>
-
-            <div>
-                <strong><label for="email">Email Address</label></strong>
-                <input type="email" id="email" name="email" required placeholder="name@domain.com">
+            <div class="art-card">
+                <img src="https://art.pixilart.com/sr5z0d6abad020aws3.png" alt="Pixel Art 2">
+                <h3>Sprites</h3>
+                <p>$25 - $30</p>
             </div>
-
-            <div>
-                <strong><label for="handle">Social Handle / Contact</label></strong>
-                <input type="text" id="handle" name="handle" required placeholder="e.g., the_tree_123">
+            <div class="art-card">
+                <img src="https://art.pixilart.com/sr5z15e11fa0e5aws3.png" alt="Pixel Art 3">
+                <h3>Sprite Sheets</h3>
+                <p>$35+</p>
             </div>
-
-            <div>
-                <strong><label for="platform">Contact Platform</label></strong>
-                <select id="platform" name="platform" required>
-                    <option value="" disabled selected>Select platform...</option>
-                    <option value="Discord">Discord</option>
-                    <option value="X">X (Twitter)</option>
-                    <option value="Bluesky">Bluesky</option>
-                    <option value="Other">Other</option>
-                </select>
+			<div class="art-card">
+                <img src="https://artr2.pixilart.com/cfr2754b223235aws3.png" alt="Pixel Art 4">
+                <h3>Backgrounds</h3>
+                <p>$30 - $40</p>
             </div>
-
-            <div>
-                <strong><label for="details">Description & Reference Links</label></strong>
-                <textarea id="details" name="details" rows="6" required placeholder="Describe your ideas, colors, references..."></textarea>
+			<div class="art-card">
+                <img src="https://art.pixilart.com/sr5z9fb13b4643aws3.png" alt="Pixel Art 4">
+                <h3>Characters</h3>
+                <p>$45 - $60</p>
             </div>
-
-            <div>
-                <label>
-                    <input type="checkbox" name="tos_agree" value="Yes" required> I agree to the Terms of Service
-                </label>
+			<div class="art-card">
+                <img src="https://artr2.pixilart.com/cfr206fde0468caws3.png" alt="Pixel Art 4">
+                <h3>Other</h3>
+                <p>$10+</p>
             </div>
-
-            <button type="submit" id="submitBtn">Submit Request</button>
-
-        </form>
+        </div>
     </section>
 
-    <script src="script.js"></script>
+    <p>*<strong>These are just common examples. Don't see what you need? DM me for any custom pixel work!</strong></p>
+   
+    <hr>
+    
+ <section class="tos-container">
+        <h2>Terms of Service</h2>
+      <p class="tos-intro">By commissioning me, you agree to the following terms. Please read them carefully before submitting an order.</p>
+    
+      <!-- Section 1 -->
+      <details class="tos-item">
+        <summary>1. Payment & Process</summary>
+        <div class="tos-content">
+          <ul>
+            <li>All payments must be made in USD via <strong>PayPal, CashApp</strong> or <strong>Venmo.</strong></li>
+            <li>50% payment is required upfront before I begin working.</li>
+            <li>Work will begin only after the invoice is cleared.</li>
+          </ul>
+        </div>
+      </details>
+    
+      <!-- Section 2 -->
+      <details class="tos-item">
+        <summary>2. Revisions & Edits</summary>
+        <div class="tos-content">
+          <ul>
+            <li>You receive <strong>2</strong> free rounds of major revisions during the rough sketch/lining phase.</li>
+            <li>Minor color adjustments are free at any stage.</li>
+            <li>Major structural changes requested after the final render will incur an extra fee.</li>
+          </ul>
+        </div>
+      </details>
+    
+      <!-- Section 3 -->
+      <details class="tos-item">
+        <summary>3. Copyright & Usage Rights</summary>
+        <div class="tos-content">
+          <ul>
+            <li><strong>Personal Use:</strong> Base prices cover personal use only (social media, streaming avatars, personal gifts).</li>
+            <li><strong>Commercial Use:</strong> Projects intended for sale (indie games, merchandise, twitch emotes for profit) require a commercial license upcharge. Please state this upfront.</li>
+            <li>I retain the right to showcase the completed artwork in my online portfolio unless sstated otherwise.</li>
+          </ul>
+        </div>
+      </details>
+    
+      <!-- Section 4 -->
+      <details class="tos-item">
+        <summary>4. Refunds & Cancellation</summary>
+        <div class="tos-content">
+          <ul>
+            <li>A full 100% refund is available if I have not started working on your piece.</li>
+            <li>A partial 50% refund is available if the project is cancelled during the sketch phase.</li>
+            <li>No refunds will be issued once the final pixel art rendering phase has begun.</li>
+          </ul>
+        </div>
+      </details>
+    </section>
+
+    <hr>
+    
+    <section class="contact">
+        <h2>My Info</h2>
+        <p>Please read my Terms of Service before ordering!</p>
+        <ul>
+            <li><strong><a href="https://discord.com" target="_blank">Discord:</a></strong> the_tree_123</li>
+            <li><strong><a href="https://bsky.app/profile/thetree2763.bsky.social" target="_blank">Bluesky:</a></strong> @echolokation2763.bsky.social</li>
+            <li><strong><a href="mailto:gabesk8gaming@gmail.com" target="_blank">Email:</a></strong> gabesk8gaming@gmail.com</li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>Oh, Hello!</p>
+    </footer>
+
 </body>
 </html>
