@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commission Request Form</title>
+	<link rel="icon" type="image/x-icon" href="https://art.pixilart.com/sr5z5c55ac249caws3.png">
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&family=Jersey+15&family=Tiny5&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <section>
+        <h2>Commission Order Form</h2>
+        <form id="sheetForm">
+            
+            <div>
+                <strong><label for="username">Your Name</label></strong>
+                <input type="text" id="username" name="username" required placeholder="e.g., John Doe">
+            </div>
+
+            <div>
+                <strong><label for="email">Email Address</label></strong>
+                <input type="email" id="email" name="email" required placeholder="name@domain.com">
+            </div>
+
+            <div>
+                <strong><label for="handle">Social Handle / Contact</label></strong>
+                <input type="text" id="handle" name="handle" required placeholder="e.g., the_tree_123">
+            </div>
+
+            <div>
+                <strong><label for="platform">Contact Platform</label></strong>
+                <select id="platform" name="platform" required>
+                    <option value="" disabled selected>Select platform...</option>
+                    <option value="Discord">Discord</option>
+                    <option value="X">X (Twitter)</option>
+                    <option value="Bluesky">Bluesky</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div>
+                <strong><label for="details">Description & Reference Links</label></strong>
+                <textarea id="details" name="details" rows="6" required placeholder="Describe your ideas, colors, references..."></textarea>
+            </div>
+
+            <div>
+                <label>
+                    <input type="checkbox" name="tos_agree" value="Yes" required> I agree to the Terms of Service
+                </label>
+            </div>
+
+            <button type="submit" id="submitBtn">Submit Request</button>
+
+        </form>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
