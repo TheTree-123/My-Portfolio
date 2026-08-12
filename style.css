@@ -18,20 +18,9 @@ body {
     background-repeat: repeat;
     background-size: cover; 
 
-    /* Parallax effect on scroll */
-    animation: parallaxScroll linear;
-    animation-timeline: scroll();
-    animation-range: 0% 100%;
-
     /* Stop browser from blurring background pixels */
     image-rendering: pixelated;
     image-rendering: crisp-edges;
-}
-
-@keyframes parallaxScroll {
-    to {
-        background-position: center 20%;
-    }
 }
 
 /* Custom link styling */
@@ -50,10 +39,10 @@ a:hover {
    ========================================================================== */
 /* Corner Language Switcher (Fixed ONLY for this container) */
 .lang-control {
-    position: fixed !important;
+    position: fixed;
     top: 15px;
     right: 15px;
-    z-index: 2147483647 !important; /* Max z-index to stay above all preview overlays */
+    z-index: 9999;
     background-color: #12121c;
     border: 3px solid #ff4bbb;
     padding: 6px 12px;
@@ -61,7 +50,6 @@ a:hover {
     display: flex;
     align-items: center;
     gap: 8px;
-    pointer-events: auto !important;
 }
 
 .lang-control label {
@@ -70,7 +58,6 @@ a:hover {
     color: #ff4bbb;
     margin: 0;
     white-space: nowrap;
-    pointer-events: none;
 }
 
 .lang-control select {
@@ -81,12 +68,13 @@ a:hover {
     border: 2px solid #00ffff;
     padding: 4px 8px;
     cursor: pointer;
-    width: auto !important;
+    width: auto;
     min-width: 120px;
     outline: none;
-    pointer-events: auto !important;
-    position: relative;
-    z-index: 2147483647 !important;
+    display: inline-block;
+    -webkit-appearance: menulist;
+    -moz-appearance: menulist;
+    appearance: menulist;
 }
 
 .lang-control select option {
