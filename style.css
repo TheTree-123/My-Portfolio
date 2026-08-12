@@ -37,19 +37,17 @@ a:hover {
 /* ==========================================================================
    2. LANGUAGE SWITCHER & DISCLAIMER BANNER
    ========================================================================== */
-/* Corner Language Switcher (Fixed ONLY for this container) */
+/* Standard flow Language Switcher */
 .lang-control {
-    position: fixed;
-    top: 15px;
-    right: 15px;
-    z-index: 9999;
+    position: static;
     background-color: #12121c;
     border: 3px solid #ff4bbb;
     padding: 6px 12px;
     box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.5);
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 8px;
+    margin: 10px auto;
 }
 
 .lang-control label {
@@ -71,10 +69,6 @@ a:hover {
     width: auto;
     min-width: 120px;
     outline: none;
-    display: inline-block;
-    -webkit-appearance: menulist;
-    -moz-appearance: menulist;
-    appearance: menulist;
 }
 
 .lang-control select option {
