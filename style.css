@@ -37,9 +37,11 @@ a:hover {
 /* ==========================================================================
    2. LANGUAGE SWITCHER & DISCLAIMER BANNER
    ========================================================================== */
-/* Standard flow Language Switcher */
+/* Normal inline flow Language Switcher */
 .lang-control {
-    position: static;
+    position: static !important;
+    top: auto !important;
+    right: auto !important;
     background-color: #12121c;
     border: 3px solid #ff4bbb;
     padding: 6px 12px;
@@ -47,7 +49,7 @@ a:hover {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    margin: 10px auto;
+    margin: 15px auto;
 }
 
 .lang-control label {
@@ -131,7 +133,7 @@ hr {
    ========================================================================== */
 header {
     text-align: center;
-    padding: 60px 20px 20px 20px; 
+    padding: 20px; 
     margin-bottom: 20px;
 }
 
