@@ -6,9 +6,9 @@
     <title>Gabriel Perdue's Pixel Art Shop</title>
     <link rel="icon" type="image/x-icon" href="https://art.pixilart.com/sr5z5c55ac249caws3.png">
     <link href="https://fonts.googleapis.com/css2?family=Jersey+10&family=Jersey+15&family=Tiny5&display=swap" rel="stylesheet">
-    <!-- External stylesheet link -->
+    <!-- External stylesheet -->
     <link rel="stylesheet" href="style.css">
-    </head>
+</head>
 <body>
 
     <!-- Language Selector Dropdown Button -->
@@ -21,9 +21,9 @@
         </select>
     </div>
 
-    <!-- Translation Disclaimer -->
+    <!-- Translation Disclaimer Banner -->
     <div id="disclaimer" class="disclaimer-banner">
-        Nota: La versión en español ha sido traducida automáticamente con Google Translate | Note: Spanish translation provided via Google Translate.
+        ⚠️ Nota: La versión en español ha sido traducida automáticamente con Google Translate / Nota: Spanish translation provided via Google Translate.
     </div>
 
     <header>
@@ -273,7 +273,6 @@
             const data = translations[lang];
             if (!data) return;
 
-            // Display or hide Google Translate disclaimer for Spanish
             document.getElementById('disclaimer').style.display = (lang === 'es') ? 'block' : 'none';
 
             document.getElementById('main-title').innerText = data.mainTitle;
