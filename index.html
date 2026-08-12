@@ -4,120 +4,136 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gabriel Perdue's Pixel Art Shop</title>
-	<link rel="icon" type="image/x-icon" href="https://art.pixilart.com/sr5z5c55ac249caws3.png">
+    <link rel="icon" type="image/x-icon" href="https://art.pixilart.com/sr5z5c55ac249caws3.png">
     <link href="https://fonts.googleapis.com/css2?family=Jersey+10&family=Jersey+15&family=Tiny5&display=swap" rel="stylesheet">
+    <!-- External stylesheet link -->
     <link rel="stylesheet" href="style.css">
-</head>
+    </head>
 <body>
 
+    <!-- Language Selector Dropdown Button -->
+    <div class="lang-control">
+        <label for="langSelect">🌐 Language:</label>
+        <select id="langSelect" onchange="changeLanguage(this.value)">
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="tp">Toki Pona</option>
+        </select>
+    </div>
+
+    <!-- Translation Disclaimer -->
+    <div id="disclaimer" class="disclaimer-banner">
+        ⚠️ Nota: La versión en español ha sido traducida automáticamente con Google Translate / Nota: Spanish translation provided via Google Translate.
+    </div>
+
     <header>
-        <h1>MY PIXEL ART</h1>
-        <p>Character Designer & Animator</p>
-      <div>
-			<div class="status open"><a href="form.html" target="_blank">Commission Me!</a></div>
-			<div class="status open"><a href="blog.html" target="_blank">My Blog!</a></div>
-		</div>
+        <h1 id="main-title">MY PIXEL ART</h1>
+        <p id="sub-title">Portfolio!</p>
+        <div class="nav-buttons">
+            <div class="status open"><a href="form.html" target="_blank" id="btn-commission">Commission Me!</a></div>
+            <div class="status open"><a href="blog.html" target="_blank" id="btn-blog">My Blog!</a></div>
+        </div>
     </header>
 
     <hr>
 
     <section class="portfolio">
-        <h2>My Work and Prices*</h2>
+        <h2 id="gallery-title">My Work and Prices*</h2>
         <div class="gallery">
             <div class="art-card">
                 <img src="https://art.pixilart.com/sr5z5c55ac249caws3.png" alt="Pixel Art 1">
-                <h3>Icons</h3>
-                <p>$3 - $5</p>
+                <h3 id="item-icons">Icons</h3>
+                <p id="price-icons">$3 - $5</p>
             </div>
             <div class="art-card">
                 <img src="https://art.pixilart.com/sr5z0d6abad020aws3.png" alt="Pixel Art 2">
-                <h3>Sprites</h3>
-                <p>$5 - $10</p>
+                <h3 id="item-sprites">Sprites</h3>
+                <p id="price-sprites">$5 - $10</p>
             </div>
             <div class="art-card">
                 <img src="https://art.pixilart.com/sr5z15e11fa0e5aws3.png" alt="Pixel Art 3">
-                <h3>Sprite Sheets</h3>
-                <p>$10+</p>
+                <h3 id="item-sheets">Sprite Sheets</h3>
+                <p id="price-sheets">$10+</p>
             </div>
-			<div class="art-card">
+            <div class="art-card">
                 <img src="https://artr2.pixilart.com/cfr2754b223235aws3.png" alt="Pixel Art 4">
-                <h3>Backgrounds</h3>
-                <p>$10 - $30</p>
+                <h3 id="item-bg">Backgrounds</h3>
+                <p id="price-bg">$10 - $30</p>
             </div>
-			<div class="art-card">
-                <img src="https://art.pixilart.com/sr5z9fb13b4643aws3.png" alt="Pixel Art 4">
-                <h3>Characters</h3>
-                <p>$15 - $35</p>
+            <div class="art-card">
+                <img src="https://art.pixilart.com/sr5z9fb13b4643aws3.png" alt="Pixel Art 5">
+                <h3 id="item-chars">Characters</h3>
+                <p id="price-chars">$15 - $35</p>
             </div>
-			<div class="art-card">
-                <img src="https://artr2.pixilart.com/cfr206fde0468caws3.png" alt="Pixel Art 4">
-                <h3>Other</h3>
-                <p>Let's talk!</p>
+            <div class="art-card">
+                <img src="https://artr2.pixilart.com/cfr206fde0468caws3.png" alt="Pixel Art 6">
+                <h3 id="item-other">Other</h3>
+                <p id="price-other">Let's talk!</p>
             </div>
         </div>
     </section>
 
-    <p>*<strong>These are just common examples. Don't see what you need? DM me for any custom pixel work!</strong></p>
+    <p><strong id="gallery-note">*These are just common examples. Don't see what you need? DM me for any custom pixel work!</strong></p>
    
     <hr>
     
- <section class="tos-container">
-        <h2>Terms of Service</h2>
-      <p class="tos-intro">By commissioning me, you agree to the following terms. Please read them carefully before submitting an order.</p>
+    <section class="tos-container">
+        <h2 id="tos-title">Terms of Service</h2>
+        <p class="tos-intro" id="tos-intro">By commissioning me, you agree to the following terms. Please read them carefully before submitting an order.</p>
     
-      <!-- Section 1 -->
-      <details class="tos-item">
-        <summary>1. Payment & Process</summary>
-        <div class="tos-content">
-          <ul>
-            <li>All payments must be made in USD via <strong>PayPal, CashApp</strong> or <strong>Venmo.</strong></li>
-            <li>50% payment is required upfront before I begin working.</li>
-            <li>Work will begin only after the invoice is cleared.</li>
-          </ul>
-        </div>
-      </details>
+        <!-- Section 1 -->
+        <details class="tos-item">
+            <summary id="tos-1-head">1. Payment & Process</summary>
+            <div class="tos-content">
+                <ul>
+                    <li id="tos-1-1">All payments must be made in USD via PayPal, CashApp or Venmo.</li>
+                    <li id="tos-1-2">50% payment is required upfront before I begin working.</li>
+                    <li id="tos-1-3">Work will begin only after the invoice is cleared.</li>
+                </ul>
+            </div>
+        </details>
     
-      <!-- Section 2 -->
-      <details class="tos-item">
-        <summary>2. Revisions & Edits</summary>
-        <div class="tos-content">
-          <ul>
-            <li>You receive <strong>2</strong> free rounds of major revisions during the rough sketch/lining phase.</li>
-            <li>Minor color adjustments are free at any stage.</li>
-            <li>Major structural changes requested after the final render will incur an extra fee.</li>
-          </ul>
-        </div>
-      </details>
+        <!-- Section 2 -->
+        <details class="tos-item">
+            <summary id="tos-2-head">2. Revisions & Edits</summary>
+            <div class="tos-content">
+                <ul>
+                    <li id="tos-2-1">You receive 2 free rounds of major revisions during the rough sketch/lining phase.</li>
+                    <li id="tos-2-2">Minor color adjustments are free at any stage.</li>
+                    <li id="tos-2-3">Major structural changes requested after the final render will incur an extra fee.</li>
+                </ul>
+            </div>
+        </details>
     
-      <!-- Section 3 -->
-      <details class="tos-item">
-        <summary>3. Refunds & Cancellation</summary>
-        <div class="tos-content">
-          <ul>
-            <li>A full refund is available if I have not started working on your piece.</li>
-            <li>A partial 50% refund is available if the project is cancelled during the sketch phase.</li>
-            <li>No refunds will be issued once the final pixel art rendering phase has begun.</li>
-          </ul>
-        </div>
-      </details>
+        <!-- Section 3 -->
+        <details class="tos-item">
+            <summary id="tos-3-head">3. Refunds & Cancellation</summary>
+            <div class="tos-content">
+                <ul>
+                    <li id="tos-3-1">A full refund is available if I have not started working on your piece.</li>
+                    <li id="tos-3-2">A partial 50% refund is available if the project is cancelled during the sketch phase.</li>
+                    <li id="tos-3-3">No refunds will be issued once the final pixel art rendering phase has begun.</li>
+                </ul>
+            </div>
+        </details>
 
-	  <!-- Section 4 -->
-      <details class="tos-item">
-        <summary>4. Other</summary>
-        <div class="tos-content">
-          <ul>
-            <li>I will <em>record</em> my process if requested.</li>
-			<li>You are allowed to use my work in commercial products, but please credit me (My name and a link to <em>this site</em> will work great)!</li>
-          </ul>
-        </div>
-      </details>
+        <!-- Section 4 -->
+        <details class="tos-item">
+            <summary id="tos-4-head">4. Other</summary>
+            <div class="tos-content">
+                <ul>
+                    <li id="tos-4-1">I will record my process if requested.</li>
+                    <li id="tos-4-2">You are allowed to use my work in commercial products, but please credit me (My name and a link to this site will work great)!</li>
+                </ul>
+            </div>
+        </details>
     </section>
 
     <hr>
     
     <section class="contact">
-        <h2>My Info</h2>
-        <p>Please read my Terms of Service before ordering!</p>
+        <h2 id="contact-title">My Info</h2>
+        <p id="contact-intro">Please read my Terms of Service before ordering!</p>
         <ul>
             <li><strong><a href="https://discord.com" target="_blank">Discord:</a></strong> the_tree_123</li>
             <li><strong><a href="https://bsky.app/profile/thetree2763.bsky.social" target="_blank">Bluesky:</a></strong> @echolokation2763.bsky.social</li>
@@ -126,8 +142,179 @@
     </section>
 
     <footer>
-        <p>Oh, Hello!</p>
+        <p id="footer-text">Oh, Hello!</p>
     </footer>
 
+    <script>
+        const translations = {
+            en: {
+                mainTitle: "MY PIXEL ART",
+                subTitle: "Portfolio!",
+                btnCommission: "Commission Me!",
+                btnBlog: "My Blog!",
+                galleryTitle: "My Work and Prices*",
+                itemIcons: "Icons",
+                priceIcons: "$3 - $5",
+                itemSprites: "Sprites",
+                priceSprites: "$5 - $10",
+                itemSheets: "Sprite Sheets",
+                priceSheets: "$10+",
+                itemBg: "Backgrounds",
+                priceBg: "$10 - $30",
+                itemChars: "Characters",
+                priceChars: "$15 - $35",
+                itemOther: "Other",
+                priceOther: "Let's talk!",
+                galleryNote: "*These are just common examples. Don't see what you need? DM me for any custom pixel work!",
+                tosTitle: "Terms of Service",
+                tosIntro: "By commissioning me, you agree to the following terms. Please read them carefully before submitting an order.",
+                tos1Head: "1. Payment & Process",
+                tos11: "All payments must be made in USD via PayPal, CashApp or Venmo.",
+                tos12: "50% payment is required upfront before I begin working.",
+                tos13: "Work will begin only after the invoice is cleared.",
+                tos2Head: "2. Revisions & Edits",
+                tos21: "You receive 2 free rounds of major revisions during the rough sketch/lining phase.",
+                tos22: "Minor color adjustments are free at any stage.",
+                tos23: "Major structural changes requested after the final render will incur an extra fee.",
+                tos3Head: "3. Refunds & Cancellation",
+                tos31: "A full refund is available if I have not started working on your piece.",
+                tos32: "A partial 50% refund is available if the project is cancelled during the sketch phase.",
+                tos33: "No refunds will be issued once the final pixel art rendering phase has begun.",
+                tos4Head: "4. Other",
+                tos41: "I will record my process if requested.",
+                tos42: "You are allowed to use my work in commercial products, but please credit me (My name and a link to this site will work great)!",
+                contactTitle: "My Info",
+                contactIntro: "Please read my Terms of Service before ordering!",
+                footerText: "Oh, Hello!"
+            },
+            es: {
+                mainTitle: "MI ARTE PIXEL",
+                subTitle: "¡Portafolio!",
+                btnCommission: "¡Haz tu pedido!",
+                btnBlog: "¡Mi Blog!",
+                galleryTitle: "Mi Trabajo y Precios*",
+                itemIcons: "Iconos",
+                priceIcons: "$3 - $5",
+                itemSprites: "Sprites",
+                priceSprites: "$5 - $10",
+                itemSheets: "Hojas de Sprites",
+                priceSheets: "$10+",
+                itemBg: "Fondos",
+                priceBg: "$10 - $30",
+                itemChars: "Personajes",
+                priceChars: "$15 - $35",
+                itemOther: "Otro",
+                priceOther: "¡Hablemos!",
+                galleryNote: "*Estos son solo ejemplos comunes. ¿No ves lo que necesitas? ¡Envíame un mensaje directo para cualquier trabajo en pixel art personalizado!",
+                tosTitle: "Términos de Servicio",
+                tosIntro: "Al hacerme un pedido, aceptas los siguientes términos. Por favor léelos con atención antes de enviar una solicitud.",
+                tos1Head: "1. Pago y Proceso",
+                tos11: "Todos los pagos deben realizarse en USD a través de PayPal, CashApp o Venmo.",
+                tos12: "Se requiere un pago del 50% por adelantado antes de empezar a trabajar.",
+                tos13: "El trabajo comenzará solo después de que se haya liquidado la factura.",
+                tos2Head: "2. Revisiones y Ediciones",
+                tos21: "Recibes 2 rondas gratuitas de revisiones mayores durante la fase de boceto/delineado.",
+                tos22: "Los ajustes menores de color son gratuitos en cualquier etapa.",
+                tos23: "Los cambios estructurales mayores solicitados después del renderizado final tendrán un costo adicional.",
+                tos3Head: "3. Reembolsos y Cancelación",
+                tos31: "Hay un reembolso completo disponible si no he empezado a trabajar en tu pieza.",
+                tos32: "Hay un reembolso parcial del 50% disponible si el proyecto se cancela durante la fase de boceto.",
+                tos33: "No se emitirán reembolsos una vez que haya comenzado la fase de renderizado final.",
+                tos4Head: "4. Otros",
+                tos41: "Grabaré mi proceso si se solicita.",
+                tos42: "Tienes permiso de usar mi trabajo en productos comerciales, pero por favor dame crédito (¡mi nombre y un enlace a este sitio funcionarán genial!).",
+                contactTitle: "Mi Información",
+                contactIntro: "¡Por favor lee mis Términos de Servicio antes de ordenar!",
+                footerText: "¡Oh, Hola!"
+            },
+            tp: {
+                mainTitle: "lipu sitelen mi",
+                subTitle: "lipu pi sitelen mi a!",
+                btnCommission: "mi pali a!",
+                btnBlog: "lipu mi a!",
+                galleryTitle: "pali mi*",
+                itemIcons: "sitelen lili",
+                priceIcons: "3 - 5 mani",
+                itemSprites: "sitelen",
+                priceSprites: "5 - 10 mani",
+                itemSheets: "sitelen mute",
+                priceSheets: "10+ mani",
+                itemBg: "sitelen mun",
+                priceBg: "10 - 30 mani",
+                itemChars: "sitelen jan",
+                priceChars: "15 - 35 mani",
+                itemOther: "ante",
+                priceOther: "mi ken toki a!",
+                galleryNote: "*ni li anpa. sina ken ala lukin e sitelen pilin anu seme? pana lipu toki tawa mi la mi pali e sitelen anu a!",
+                tosTitle: "sona lawa",
+                tosIntro: "sina wile toki tawa mi la sina o lukin e ni a!",
+                tos1Head: "1. mani",
+                tos11: "sina o pana mani USD tawa mi. sina o kepeken e PayPal, CashApp anu Venmo.",
+                tos12: "mi wile e mani 50%.",
+                tos13: "mi jo e mani 50% la mi pali e sitelen.",
+                tos2Head: "2. ante",
+                tos21: "sina jo e ante tu pi mani ala a!",
+                tos22: "ante kule li mani ala.",
+                tos23: "ante suli li mani mute.",
+                tos3Head: "3. pini",
+                tos31: "mi open ala e sitelen la sina ken jo e mani sina ale.",
+                tos32: "mi open e sitelen la sina ken jo e mani sina 50%.",
+                tos33: "mi pali e sitelen la sina ken ala jo e mani sina.",
+                tos4Head: "4. ante ante",
+                tos41: "sina wile e ni la mi ken sitelen e kalama tawa.",
+                tos42: "sina ken pali mani kepeken sitelen mi (sina o pana e nimi mi e nimi lipu ni).",
+                contactTitle: "sona mi",
+                contactIntro: "sina o lukin e sona lawa!",
+                footerText: "a, toki a!"
+            }
+        };
+
+        function changeLanguage(lang) {
+            const data = translations[lang];
+            if (!data) return;
+
+            // Display or hide Google Translate disclaimer for Spanish
+            document.getElementById('disclaimer').style.display = (lang === 'es') ? 'block' : 'none';
+
+            document.getElementById('main-title').innerText = data.mainTitle;
+            document.getElementById('sub-title').innerText = data.subTitle;
+            document.getElementById('btn-commission').innerText = data.btnCommission;
+            document.getElementById('btn-blog').innerText = data.btnBlog;
+            document.getElementById('gallery-title').innerText = data.galleryTitle;
+            document.getElementById('item-icons').innerText = data.itemIcons;
+            document.getElementById('price-icons').innerText = data.priceIcons;
+            document.getElementById('item-sprites').innerText = data.itemSprites;
+            document.getElementById('price-sprites').innerText = data.priceSprites;
+            document.getElementById('item-sheets').innerText = data.itemSheets;
+            document.getElementById('price-sheets').innerText = data.priceSheets;
+            document.getElementById('item-bg').innerText = data.itemBg;
+            document.getElementById('price-bg').innerText = data.priceBg;
+            document.getElementById('item-chars').innerText = data.itemChars;
+            document.getElementById('price-chars').innerText = data.priceChars;
+            document.getElementById('item-other').innerText = data.itemOther;
+            document.getElementById('price-other').innerText = data.priceOther;
+            document.getElementById('gallery-note').innerText = data.galleryNote;
+            document.getElementById('tos-title').innerText = data.tosTitle;
+            document.getElementById('tos-intro').innerText = data.tosIntro;
+            document.getElementById('tos-1-head').innerText = data.tos1Head;
+            document.getElementById('tos-1-1').innerText = data.tos11;
+            document.getElementById('tos-1-2').innerText = data.tos12;
+            document.getElementById('tos-1-3').innerText = data.tos13;
+            document.getElementById('tos-2-head').innerText = data.tos2Head;
+            document.getElementById('tos-2-1').innerText = data.tos21;
+            document.getElementById('tos-2-2').innerText = data.tos22;
+            document.getElementById('tos-2-3').innerText = data.tos23;
+            document.getElementById('tos-3-head').innerText = data.tos3Head;
+            document.getElementById('tos-3-1').innerText = data.tos31;
+            document.getElementById('tos-3-2').innerText = data.tos32;
+            document.getElementById('tos-3-3').innerText = data.tos33;
+            document.getElementById('tos-4-head').innerText = data.tos4Head;
+            document.getElementById('tos-4-1').innerText = data.tos41;
+            document.getElementById('tos-4-2').innerText = data.tos42;
+            document.getElementById('contact-title').innerText = data.contactTitle;
+            document.getElementById('contact-intro').innerText = data.contactIntro;
+            document.getElementById('footer-text').innerText = data.footerText;
+        }
+    </script>
 </body>
 </html>
