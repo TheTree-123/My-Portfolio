@@ -4,12 +4,12 @@
 body {
     background-color: #0c0c12; /* Dark core background */
     color: #e0e0e7;
-    font-family: 'Tiny5', sans-serif; /* Your choice for paragraphs/body text */
-    font-size: 24px;                  /* Kept large enough to read easily */
+    font-family: 'Tiny5', sans-serif;
+    font-size: 24px;                  
     line-height: 1.3;
     padding: 20px;
     max-width: 900px;
-    margin: 0 auto;                   /* Centers your page on the screen */
+    margin: 0 auto;                   
 
     /* Link your sky image */
     background-image: url('bg-sky.png');
@@ -18,56 +18,101 @@ body {
     background-repeat: repeat;
     background-size: cover; 
 
-    /* THE PARALLAX MAGIC: Automatically moves the sky slowly as you scroll */
+    /* Parallax effect on scroll */
     animation: parallaxScroll linear;
     animation-timeline: scroll();
     animation-range: 0% 100%;
 
-    /* CRITICAL FOR PIXEL ART: Stops browser from blurring background pixels */
+    /* Stop browser from blurring background pixels */
     image-rendering: pixelated;
     image-rendering: crisp-edges;
 }
 
-/* Controls the slow vertical movement of the sky relative to scrolling */
 @keyframes parallaxScroll {
     to {
         background-position: center 20%;
     }
 }
 
-/* Custom link styling - no more default blue/purple colors */
+/* Custom link styling */
 a {
-    color: #00ff66;                   /* Neon pink to match accents */
-    text-decoration: none;            /* Removes default underline */
+    color: #00ff66;                   
+    text-decoration: none;            
 }
 
 a:hover {
-    color: #00ffff;                   /* Turns neon cyan on hover */
+    color: #00ffff;                   
     text-decoration: underline;       
 }
 
 /* ==========================================================================
-   2. CONTENT SECTIONS (High Contrast Menu Style)
+   2. LANGUAGE SWITCHER & DISCLAIMER BANNER
+   ========================================================================== */
+.lang-control {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 1000;
+    background-color: #12121c;
+    border: 3px solid #ff4bbb;
+    padding: 6px 12px;
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.lang-control label {
+    font-family: 'Jersey 10', sans-serif;
+    font-size: 22px;
+    color: #ff4bbb;
+}
+
+.lang-control select {
+    background-color: #1a1a26;
+    color: #00ffff;
+    font-family: 'Jersey 15', sans-serif;
+    font-size: 20px;
+    border: 2px solid #00ffff;
+    padding: 4px 8px;
+    cursor: pointer;
+    width: auto;
+}
+
+.disclaimer-banner {
+    display: none;
+    background-color: #ff9800;
+    color: #000;
+    padding: 12px;
+    font-family: 'Tiny5', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    border: 3px solid #000;
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.5);
+    margin: 15px auto;
+    max-width: 800px;
+    text-align: center;
+}
+
+/* ==========================================================================
+   3. CONTENT SECTIONS (High Contrast Menu Style)
    ========================================================================== */
 section {
-    /* Solid deep charcoal so text is 100% readable over the sky background */
     background-color: #12121c; 
     border: 4px solid #3a3a4a; 
     padding: 30px;
     margin-bottom: 30px;
-    box-shadow: 0px 10px 0px rgba(0, 0, 0, 0.5); /* Deep retro drop shadow */
+    box-shadow: 0px 10px 0px rgba(0, 0, 0, 0.5);
 }
 
-/* Section Headers (My Work, Hire Me) */
 section h2 {
-    font-family: 'Jersey 10', sans-serif; /* Your choice for Headers */
+    font-family: 'Jersey 10', sans-serif;
     font-size: 40px;
-    color: #00ffff;                       /* Neon cyan */
+    color: #00ffff;                       
     margin-top: 0;
     margin-bottom: 20px;
 }
 
-/* Dashed dividers between sections */
 hr {
     border: none;
     border-top: 4px dashed #3a3a4a;
@@ -75,21 +120,21 @@ hr {
 }
 
 /* ==========================================================================
-   3. HEADER & TITLE
+   4. HEADER & TITLE & NAVIGATION
    ========================================================================== */
 header {
     text-align: center;
-    padding: 60px 20px; 
+    padding: 60px 20px 20px 20px; 
     margin-bottom: 20px;
 }
 
 header h1 {
-    font-family: 'Jersey 15', sans-serif; /* Your choice for Main Title */
-    color: #ff4bbb;                       /* Neon pink */
+    font-family: 'Jersey 15', sans-serif;
+    color: #ff4bbb;                       
     font-size: 72px;                      
     margin-bottom: 10px;
     letter-spacing: 2px;
-    text-shadow: 4px 4px 0px #000000;     /* Pure black drop shadow for maximum visibility */
+    text-shadow: 4px 4px 0px #000000;
 }
 
 header p {
@@ -99,23 +144,42 @@ header p {
     text-shadow: 3px 3px 0px #000000;
 }
 
-/* Commission Status Box */
+.nav-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
 .status {
     font-family: 'Jersey 10', sans-serif;
     font-size: 24px;
     display: inline-block;
     padding: 6px 14px;
-    margin-top: 20px;
-    border: 4px solid #00ff66;            /* Neon green border */
+    border: 4px solid #00ff66;            
     color: #00ff66;
     text-transform: uppercase;
     text-shadow: 2px 2px 0px #000000;
     background-color: #12121c;            
     box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.status a {
+    color: #00ff66;
+    text-decoration: none;
+}
+
+.status:hover, .status a:hover {
+    border-color: #00ffff;
+    color: #00ffff;
+    text-decoration: none;
+    transform: translateY(-2px);
 }
 
 /* ==========================================================================
-   4. THE GALLERY GRID & ART CARDS
+   5. GALLERY GRID & ART CARDS
    ========================================================================== */
 .gallery {
     display: grid;
@@ -124,19 +188,18 @@ header p {
 }
 
 .art-card {
-    background-color: #1a1a26;            /* Darker card backgrounds */
+    background-color: #1a1a26;            
     border: 4px solid #2e2e3a;
     padding: 15px;
     text-align: center;
-    transition: transform 0.2s;          /* Smooth bounce when hovered */
+    transition: transform 0.2s;          
 }
 
 .art-card:hover {
-    transform: translateY(-5px);          /* Moves card up slightly on hover */
-    border-color: #ff4bbb;                /* Changes border to pink on hover */
+    transform: translateY(-5px);          
+    border-color: #ff4bbb;                
 }
 
-/* Stops browser from blurring your portfolio pixel art pieces */
 .art-card img {
     width: 100%;
     height: auto;
@@ -146,7 +209,6 @@ header p {
     border: 2px solid #0c0c12;
 }
 
-/* Card Titles (like "Icons", "Sprites") */
 .art-card h3 {
     font-family: 'Jersey 10', sans-serif;
     font-size: 28px;
@@ -155,10 +217,54 @@ header p {
 }
 
 /* ==========================================================================
-   5. CONTACT & FOOTER
+   6. TERMS OF SERVICE (TOS) STYLES
+   ========================================================================== */
+.tos-container {
+    text-align: left;
+}
+
+.tos-intro {
+    margin-bottom: 20px;
+}
+
+.tos-item {
+    margin-bottom: 15px;
+    background-color: #1a1a26;
+    border: 3px solid #3a3a4a;
+    padding: 12px;
+}
+
+.tos-item summary {
+    cursor: pointer;
+    font-family: 'Jersey 10', sans-serif;
+    font-size: 26px;
+    color: #00ffff;
+    outline: none;
+}
+
+.tos-item summary:hover {
+    color: #ff4bbb;
+}
+
+.tos-content {
+    margin-top: 10px;
+    padding-left: 10px;
+}
+
+.tos-content ul {
+    margin: 5px 0;
+    padding-left: 20px;
+}
+
+.tos-content li {
+    margin-bottom: 8px;
+}
+
+/* ==========================================================================
+   7. CONTACT & FOOTER
    ========================================================================== */
 .contact ul {
-    list-style-type: none;                /* Removes standard bullet points */
+    list-style-type: none;                
     padding: 0;
 }
 
@@ -174,15 +280,14 @@ header p {
 footer {
     text-align: center;
     margin-top: 60px;
-    font-size: 16px;
-    color: #5a5a6a;
+    font-size: 20px;
+    color: #888;
     text-shadow: 2px 2px 0px #000000;
     padding-bottom: 40px;
 }
 
-
 /* ==========================================================================
-   6. FORM INPUTS & CONTROLS
+   8. FORM INPUTS & CONTROLS
    ========================================================================== */
 form div {
     margin-bottom: 25px;
@@ -195,13 +300,12 @@ form label {
     margin-bottom: 8px;
 }
 
-/* Style all text inputs, textareas, and select dropdowns */
 input[type="text"],
 input[type="email"],
 select,
 textarea {
-    background-color: #1a1a26;     /* Dark card background */
-    border: 4px solid #3a3a4a;     /* Thick retro border */
+    background-color: #1a1a26;     
+    border: 4px solid #3a3a4a;     
     color: #e0e0e7;
     font-family: 'Tiny5', sans-serif;
     font-size: 22px;
@@ -210,7 +314,6 @@ textarea {
     box-sizing: border-box;
 }
 
-/* Neon Cyan glow highlight on click/focus */
 input:focus,
 select:focus,
 textarea:focus {
@@ -218,7 +321,6 @@ textarea:focus {
     border-color: #00ffff;
 }
 
-/* Checkbox specific spacing */
 input[type="checkbox"] {
     transform: scale(1.4);
     margin-right: 10px;
@@ -226,12 +328,11 @@ input[type="checkbox"] {
     cursor: pointer;
 }
 
-/* Submit Button styled like your green commission status box */
 form button {
     font-family: 'Jersey 10', sans-serif;
     font-size: 32px;
     background-color: #12121c;
-    color: #00ff66;                  /* Neon green */
+    color: #00ff66;                  
     border: 4px solid #00ff66;
     padding: 12px 24px;
     cursor: pointer;
@@ -239,7 +340,7 @@ form button {
 }
 
 form button:hover {
-    color: #00ffff;                  /* Switches to cyan on hover */
+    color: #00ffff;                  
     border-color: #00ffff;
     box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.5);
 }
