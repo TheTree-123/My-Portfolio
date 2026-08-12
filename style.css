@@ -11,7 +11,7 @@ body {
     max-width: 900px;
     margin: 0 auto;                   
 
-    /* Link your sky image */
+    /* Link sky image */
     background-image: url('bg-sky.png');
     background-attachment: scroll; 
     background-position: center top;
@@ -48,12 +48,12 @@ a:hover {
 /* ==========================================================================
    2. LANGUAGE SWITCHER & DISCLAIMER BANNER
    ========================================================================== */
-/* ONLY this container stays fixed in the top right corner */
+/* Corner Language Switcher (Fixed ONLY for this container) */
 .lang-control {
     position: fixed !important;
     top: 15px;
     right: 15px;
-    z-index: 1000;
+    z-index: 9999;
     background-color: #12121c;
     border: 3px solid #ff4bbb;
     padding: 6px 12px;
@@ -61,16 +61,19 @@ a:hover {
     display: flex;
     align-items: center;
     gap: 8px;
+    pointer-events: auto;
 }
 
 .lang-control label {
     font-family: 'Jersey 10', sans-serif;
     font-size: 22px;
     color: #ff4bbb;
+    margin: 0;
+    pointer-events: none;
 }
 
 .lang-control select {
-    position: static; /* Standard flow within .lang-control */
+    position: relative !important;
     background-color: #1a1a26;
     color: #00ffff;
     font-family: 'Jersey 15', sans-serif;
@@ -78,9 +81,22 @@ a:hover {
     border: 2px solid #00ffff;
     padding: 4px 8px;
     cursor: pointer;
-    width: auto;
+    width: auto !important;
+    min-width: 120px;
+    display: inline-block;
+    outline: none;
+    z-index: 10000;
 }
 
+.lang-control select option {
+    background-color: #12121c;
+    color: #00ffff;
+    font-family: 'Jersey 15', sans-serif;
+    font-size: 18px;
+    padding: 6px;
+}
+
+/* Translation Disclaimer Banner */
 .disclaimer-banner {
     display: none;
     background-color: #ff9800;
@@ -101,7 +117,7 @@ a:hover {
    ========================================================================== */
 section {
     background-color: #12121c; 
-    color: #e0e0e7; /* Light text retained inside dark section containers */
+    color: #e0e0e7; /* Light text preserved inside section blocks */
     border: 4px solid #3a3a4a; 
     padding: 30px;
     margin-bottom: 30px;
@@ -150,7 +166,7 @@ header h1 {
 
 header p {
     margin: 0;
-    color: #000000; /* Dark text for header sub-title over background */
+    color: #000000; /* Dark text for sub-title directly on background */
     font-size: 32px;
     text-shadow: 1px 1px 0px #ffffff;
 }
@@ -292,13 +308,13 @@ footer {
     text-align: center;
     margin-top: 60px;
     font-size: 20px;
-    color: #000000; /* Dark text for footer directly on the background */
+    color: #000000; /* Dark text for footer directly on background */
     text-shadow: 1px 1px 0px #ffffff;
     padding-bottom: 40px;
 }
 
 /* ==========================================================================
-   8. FORM INPUTS & CONTROLS
+   8. FORM INPUTS & CONTROLS (Scoped to forms so it won't break language select)
    ========================================================================== */
 form div {
     margin-bottom: 25px;
@@ -311,11 +327,10 @@ form label {
     margin-bottom: 8px;
 }
 
-/* General form select elements remain in-flow */
-input[type="text"],
-input[type="email"],
+form input[type="text"],
+form input[type="email"],
 form select,
-textarea {
+form textarea {
     position: static;
     background-color: #1a1a26;     
     border: 4px solid #3a3a4a;     
@@ -327,14 +342,14 @@ textarea {
     box-sizing: border-box;
 }
 
-input:focus,
-select:focus,
-textarea:focus {
+form input:focus,
+form select:focus,
+form textarea:focus {
     outline: none;
     border-color: #00ffff;
 }
 
-input[type="checkbox"] {
+form input[type="checkbox"] {
     transform: scale(1.4);
     margin-right: 10px;
     vertical-align: middle;
