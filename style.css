@@ -53,7 +53,7 @@ a:hover {
     position: fixed !important;
     top: 15px;
     right: 15px;
-    z-index: 999999;
+    z-index: 2147483647 !important; /* Max z-index to stay above all preview overlays */
     background-color: #12121c;
     border: 3px solid #ff4bbb;
     padding: 6px 12px;
@@ -61,6 +61,7 @@ a:hover {
     display: flex;
     align-items: center;
     gap: 8px;
+    pointer-events: auto !important;
 }
 
 .lang-control label {
@@ -69,6 +70,7 @@ a:hover {
     color: #ff4bbb;
     margin: 0;
     white-space: nowrap;
+    pointer-events: none;
 }
 
 .lang-control select {
@@ -82,16 +84,14 @@ a:hover {
     width: auto !important;
     min-width: 120px;
     outline: none;
-    -webkit-appearance: menulist;
-    -moz-appearance: menulist;
-    appearance: menulist;
+    pointer-events: auto !important;
+    position: relative;
+    z-index: 2147483647 !important;
 }
 
 .lang-control select option {
     background-color: #12121c;
     color: #00ffff;
-    font-family: sans-serif; /* System font for native option popup rendering */
-    font-size: 16px;
 }
 
 /* Translation Disclaimer Banner */
