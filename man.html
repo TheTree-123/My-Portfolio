@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full select-none">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deltarune - He Is Behind The Tree 🥚</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Pixel Fonts for authentic Undertale/Deltarune aesthetic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body, button, p, h3, span {
+            font-family: 'VT323', monospace !important;
+        }
+
+        /* Pixel art rendering */
+        .pixelated {
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+        }
+
+        /* Deltarune Dialogue Box styling */
+        .deltarune-box {
+            background-color: #000000;
+            border: 4px solid #ffffff;
+            box-shadow: 0 0 0 4px #000000, 0 0 20px rgba(0, 0, 0, 0.9);
+            image-rendering: pixelated;
+        }
+
+        .deltarune-btn {
+            background-color: transparent;
+            color: #ffffff;
+            transition: color 0.1s;
+        }
+        .deltarune-btn:hover {
+            color: #ffff00;
+        }
+
+        /* Soul cursor heart animation */
+        .soul-heart {
+            display: inline-block;
+            color: #ff0000;
+            filter: drop-shadow(0 0 4px #ff0000);
+            animation: soulPulse 0.8s infinite alternate ease-in-out;
+        }
+        @keyframes soulPulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.15); }
+        }
+
+        /* Typewriter cursor */
+        .typing-cursor::after {
+            content: '█';
+            display: inline-block;
+            margin-left: 4px;
+            animation: blink 0.6s infinite steps(2, start);
+            color: #ffffff;
+        }
+        @keyframes blink {
+            to { visibility: hidden; }
+        }
+    </style>
+</head>
+<body class="bg-black text-white h-full w-full overflow-hidden font-pixelify relative select-none">
+
+    <!-- Room Background Container -->
+    <div id="room-container" class="absolute inset-0 w-full h-full z-0 flex flex-col items-center justify-center bg-gradient-to-b from-black via-zinc-950 to-purple-950/40">
+        
+        <!-- Tree Display Area -->
+        <div id="tree-wrapper" class="relative group cursor-pointer flex flex-col items-center justify-center transition-transform hover:scale-105 duration-200">
+            
+            <!-- Tree Pixel Art Image -->
+            <img id="tree-img" 
+                 src="mantree.gif" 
+                 alt="Deltarune Tree" 
+                 class="pixelated w-48 h-60 sm:w-64 sm:h-80 object-contain relative z-10"
+                 onerror="handleTreeImageError()" />
+
+            <!-- Fallback Pixel Square (If image fails to load) -->
+            <div id="tree-fallback" class="hidden w-48 h-48 sm:w-64 sm:h-64 bg-red-950/80 flex flex-col items-center justify-center p-4 text-center relative z-10">
+                <span class="text-4xl mb-2">🌳</span>
+                <span class="font-pixel text-xs text-yellow-300">[TREE]</span>
+            </div>
+
+            <!-- Ground Shadow -->
+            <div class="w-56 sm:w-72 h-6 bg-black/80 rounded-full blur-xs mt-2 border-t border-purple-500/30"></div>
+        </div>
+    </div>
+
+    <!-- Vignette CRT Overlay -->
+    <div class="absolute inset-0 pointer-events-none z-10 bg-[radial-gradient(circle,_transparent_40%,_rgba(0,0,0,0.95)_100%)]"></div>
+
+    <!-- Top Navigation Header -->
+    <header class="absolute top-0 inset-x-0 p-4 sm:p-6 z-20 flex justify-between items-center pointer-events-none">
+        <!-- Back Button to index.html -->
+        <div class="pointer-events-auto">
+            <a href="index.html" class="px-3 py-2 border-2 border-white bg-black hover:border-yellow-300 text-white hover:text-yellow-300 text-sm sm:text-base font-pixel flex items-center space-x-2 transition-all">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                <span>Back</span>
+            </a>
+        </div>
+
+        <!-- Audio Sound Toggle -->
+        <div class="pointer-events-auto">
+            <button id="audio-toggle" class="px-3 py-2 border-2 border-white bg-black hover:border-yellow-300 text-white hover:text-yellow-300 text-sm sm:text-base font-pixel flex items-center space-x-2 transition-all">
+                <i id="audio-icon" data-lucide="volume-x" class="w-4 h-4 text-red-500"></i>
+                <span id="audio-text">Sound: Off</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Initial Prompt Hint -->
+    <div id="initial-hint" class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 pointer-events-none transition-opacity duration-300">
+        <div class="deltarune-box px-5 py-3 flex items-center space-x-3 text-white font-pixel text-sm sm:text-base">
+            <span class="soul-heart">♥</span>
+            <span>[Click or tap the lone tree to investigate]</span>
+        </div>
+    </div>
+
+    <!-- Hover Tooltip -->
+    <div id="hover-tooltip" class="fixed pointer-events-none z-30 transform -translate-x-1/2 -translate-y-full opacity-0 transition-opacity duration-150 bg-black border-2 border-white px-3 py-1 font-pixel text-sm sm:text-base text-yellow-300 shadow-lg">
+        He is behind the tree.
+    </div>
+
+    <!-- Deltarune Dialogue Box Overlay -->
+    <div id="dialogue-modal" class="fixed inset-x-0 bottom-4 sm:bottom-8 z-30 p-2 sm:p-4 max-w-4xl mx-auto pointer-events-none transition-all duration-300 transform translate-y-full opacity-0">
+        <div class="deltarune-box p-4 sm:p-6 pointer-events-auto relative">
+            
+            <div class="flex items-center justify-between border-b-2 border-white/20 pb-2 mb-4">
+                <div class="flex items-center space-x-3">
+                    <div id="portrait-box" class="w-14 h-14 border-2 border-white bg-black flex items-center justify-center overflow-hidden">
+                        <span id="portrait-icon" class="text-3xl animate-pulse">👤</span>
+                    </div>
+                    <div>
+                        <h3 id="speaker-name" class="font-pixel text-sm sm:text-base text-yellow-300">???</h3>
+                        <p id="speaker-status" class="font-vt text-lg sm:text-xl text-gray-400">Standing behind the tree.</p>
+                    </div>
+                </div>
+
+                <button id="close-dialogue-btn" class="text-gray-400 hover:text-yellow-300 font-pixel text-sm px-2 py-1 border border-white/40 hover:border-yellow-300">
+                    [X]
+                </button>
+            </div>
+
+            <div class="min-h-[100px] sm:min-h-[120px] mb-4">
+                <p id="dialogue-text" class="font-pixel text-base sm:text-xl leading-relaxed text-white tracking-wide whitespace-pre-line">
+                    ...
+                </p>
+            </div>
+
+            <div id="choices-container" class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3 border-t-2 border-white/20">
+                <!-- Choices dynamically rendered -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Audio Synth Engine - Exact "Waltz of the Seccom Masada" (man.ogg) piano synthesis
+        class DeltaruneAudio {
+            constructor() {
+                this.ctx = null;
+                this.isMuted = true;
+                this.initialized = false;
+                this.bgmTimeout = null;
+                this.activeOscillators = [];
+            }
+
+            init() {
+                if (this.initialized) return;
+                try {
+                    const AudioContext = window.AudioContext || window.webkitAudioContext;
+                    this.ctx = new AudioContext();
+                    this.initialized = true;
+                } catch (e) {
+                    console.warn("AudioContext failed:", e);
+                }
+            }
+
+            toggleSound() {
+                if (!this.initialized) this.init();
+
+                this.isMuted = !this.isMuted;
+                if (!this.isMuted) {
+                    if (this.ctx && this.ctx.state === 'suspended') {
+                        this.ctx.resume();
+                    }
+                    this.startWaltzLoop();
+                } else {
+                    this.stopWaltzLoop();
+                }
+                return !this.isMuted;
+            }
+
+            playTextBlip() {
+                if (this.isMuted || !this.ctx || this.ctx.state !== 'running') return;
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+
+                osc.type = 'square';
+                osc.frequency.setValueAtTime(140 + Math.random() * 20, this.ctx.currentTime);
+
+                gain.gain.setValueAtTime(0.18, this.ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.05);
+
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+
+                osc.start();
+                osc.stop(this.ctx.currentTime + 0.05);
+            }
+
+            playSelectSound() {
+                if (this.isMuted || !this.ctx || this.ctx.state !== 'running') return;
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(440, this.ctx.currentTime);
+                osc.frequency.setValueAtTime(880, this.ctx.currentTime + 0.04);
+
+                gain.gain.setValueAtTime(0.12, this.ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.12);
+
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+
+                osc.start();
+                osc.stop(this.ctx.currentTime + 0.12);
+            }
+
+            // Synthesizes soft acoustic piano note
+            playPianoNote(freq, time, duration = 1.0, volume = 0.09) {
+                if (!this.ctx || this.isMuted || this.ctx.state !== 'running') return;
+                
+                const osc1 = this.ctx.createOscillator();
+                const osc2 = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                const filter = this.ctx.createBiquadFilter();
+
+                osc1.type = 'triangle';
+                osc2.type = 'sine';
+                
+                osc1.frequency.setValueAtTime(freq, time);
+                osc2.frequency.setValueAtTime(freq * 2, time);
+
+                filter.type = 'lowpass';
+                filter.frequency.setValueAtTime(1200, time);
+                filter.frequency.exponentialRampToValueAtTime(300, time + duration);
+
+                gain.gain.setValueAtTime(0.001, time);
+                gain.gain.linearRampToValueAtTime(volume, time + 0.02);
+                gain.gain.exponentialRampToValueAtTime(0.0001, time + duration);
+
+                osc1.connect(filter);
+                osc2.connect(filter);
+                filter.connect(gain);
+                gain.connect(this.ctx.destination);
+
+                osc1.start(time);
+                osc2.start(time);
+                osc1.stop(time + duration);
+                osc2.stop(time + duration);
+
+                // Keep track of active nodes for immediate stop when muted
+                this.activeOscillators.push(osc1, osc2);
+                setTimeout(() => {
+                    this.activeOscillators = this.activeOscillators.filter(o => o !== osc1 && o !== osc2);
+                }, (time - this.ctx.currentTime + duration) * 1000);
+            }
+
+            // Synthesizes "Waltz of the Seccom Masada" (man.ogg) with matching timing
+            startWaltzLoop() {
+                if (!this.ctx) return;
+
+                // Slower step speed (0.29s per eighth-note step)
+                const step = 0.29; 
+
+                const waltzNotes = [
+                    // --- MEASURES 1-2 (C Major Accompaniment) ---
+                    { f: 130.81, t: 0, d: 0.8, v: 0.05 }, { f: 196.00, t: 0, d: 0.8, v: 0.05 },
+                    { f: 261.63, t: 2, d: 0.6, v: 0.04 }, { f: 329.63, t: 2, d: 0.6, v: 0.04 }, { f: 392.00, t: 2, d: 0.6, v: 0.04 },
+                    { f: 261.63, t: 4, d: 0.6, v: 0.04 }, { f: 329.63, t: 4, d: 0.6, v: 0.04 }, { f: 392.00, t: 4, d: 0.6, v: 0.04 },
+
+                    { f: 130.81, t: 6, d: 0.8, v: 0.05 }, { f: 196.00, t: 6, d: 0.8, v: 0.05 },
+                    { f: 261.63, t: 8, d: 0.6, v: 0.04 }, { f: 329.63, t: 8, d: 0.6, v: 0.04 }, { f: 392.00, t: 8, d: 0.6, v: 0.04 },
+                    { f: 261.63, t: 10, d: 0.6, v: 0.04 }, { f: 329.63, t: 10, d: 0.6, v: 0.04 }, { f: 392.00, t: 10, d: 0.6, v: 0.04 },
+
+                    // Melody Phrase 1: Starts 1 beat after accompaniment (t: 2)
+                    { f: 659.25, t: 2, d: 0.95, v: 0.10 }, // E5
+                    { f: 622.25, t: 3, d: 0.95, v: 0.10 }, // D#5
+                    { f: 987.77, t: 4, d: 0.95, v: 0.10 }, // B5
+                    { f: 739.99, t: 5, d: 0.95, v: 0.10 }, // F#5
+                    { f: 880.00, t: 6, d: 0.95, v: 0.10 }, // A5
+                    { f: 783.99, t: 7, d: 0.95, v: 0.10 }, // G5
+                    // t: 8 is Rest (_)
+                    { f: 739.99, t: 9, d: 0.85, v: 0.10 }, // F#5 (da)
+                    { f: 783.99, t: 10, d: 1.85, v: 0.10 }, // G5 (da)
+                    // t: 11 is Rest
+
+                    // --- MEASURES 3-4 (Bb Major Accompaniment) ---
+                    { f: 116.54, t: 12, d: 0.8, v: 0.05 }, { f: 174.61, t: 12, d: 0.8, v: 0.05 },
+                    { f: 233.08, t: 14, d: 0.6, v: 0.04 }, { f: 293.66, t: 14, d: 0.6, v: 0.04 }, { f: 349.23, t: 14, d: 0.6, v: 0.04 },
+                    { f: 233.08, t: 16, d: 0.6, v: 0.04 }, { f: 293.66, t: 16, d: 0.6, v: 0.04 }, { f: 349.23, t: 16, d: 0.6, v: 0.04 },
+
+                    { f: 116.54, t: 18, d: 0.8, v: 0.05 }, { f: 174.61, t: 18, d: 0.8, v: 0.05 },
+                    { f: 233.08, t: 20, d: 0.6, v: 0.04 }, { f: 293.66, t: 20, d: 0.6, v: 0.04 }, { f: 349.23, t: 20, d: 0.6, v: 0.04 },
+                    { f: 233.08, t: 22, d: 0.6, v: 0.04 }, { f: 293.66, t: 22, d: 0.6, v: 0.04 }, { f: 349.23, t: 22, d: 0.6, v: 0.04 },
+
+                    // Melody Phrase 2: Starts 1 beat after Bb accompaniment (t: 14)
+                    { f: 587.33, t: 14, d: 0.95, v: 0.10 }, // D5
+                    { f: 554.37, t: 15, d: 0.95, v: 0.10 }, // C#5
+                    { f: 880.00, t: 16, d: 0.95, v: 0.10 }, // A5
+                    { f: 659.25, t: 17, d: 0.95, v: 0.10 }, // E5
+                    { f: 783.99, t: 18, d: 0.95, v: 0.10 }, // G5
+                    { f: 698.46, t: 19, d: 0.95, v: 0.10 }, // F5
+                    // t: 20 is Rest (_)
+                    { f: 659.25, t: 21, d: 0.85, v: 0.10 }, // E5 (da)
+                    { f: 698.46, t: 22, d: 1.85, v: 0.10 }  // F5 (da)
+                ];
+
+                const loopDuration = 24 * step;
+
+                const playLoop = () => {
+                    if (this.isMuted || !this.ctx) return;
+                    const now = this.ctx.currentTime;
+
+                    waltzNotes.forEach(n => {
+                        this.playPianoNote(n.f, now + n.t * step, n.d * step, n.v || 0.08);
+                    });
+
+                    this.bgmTimeout = setTimeout(playLoop, loopDuration * 1000);
+                };
+
+                playLoop();
+            }
+
+            stopWaltzLoop() {
+                if (this.bgmTimeout) {
+                    clearTimeout(this.bgmTimeout);
+                    this.bgmTimeout = null;
+                }
+                // Stop any scheduled active nodes immediately
+                this.activeOscillators.forEach(osc => {
+                    try {
+                        osc.stop();
+                        osc.disconnect();
+                    } catch (e) {}
+                });
+                this.activeOscillators = [];
+                // Suspend audio context to silence instantly
+                if (this.ctx && this.ctx.state === 'running') {
+                    this.ctx.suspend();
+                }
+            }
+        }
+
+        const audio = new DeltaruneAudio();
+
+        // Story dialogue state
+        let hasEgg = false;
+
+        const storyNodes = {
+            // Initial Encounter
+            start: {
+                speaker: "Narrator",
+                status: "Behind the Tree",
+                portrait: "🌳",
+                text: "Well, there is a man behind the tree.\n\nHe is standing quietly in the dark.",
+                choices: [
+                    { text: "[ Speak to the man ]", next: "speakIntro" },
+                    { text: "[ Step away ]", next: "finish" }
+                ]
+            },
+
+            // Conversation Node 1: Stepping Closer
+            speakIntro: {
+                speaker: "The Man",
+                status: "Standing behind the tree",
+                portrait: "👤",
+                text: "Ah... You stepped off the main path.\n\nMost people just look at the finished gallery, click a few links, and leave.\n\nIt gets very quiet behind the rendered art.",
+                choices: [
+                    { text: "Who are you?", next: "whoAreYou" },
+                    { text: "Why are you back here?", next: "whyBackHere" },
+                    { text: "How did you get here?", next: "howGotHere" }
+                ]
+            },
+
+            // Branch: Who Are You
+            whoAreYou: {
+                speaker: "The Man",
+                status: "Behind the Tree",
+                portrait: "👤",
+                text: "I'm a leftover draft. A sprite pushed outside the canvas boundaries.\n\nWhen a pixel artist works late into the night, some ideas don't make it to the final export.",
+                choices: [
+                    { text: "Are you so far gone?", next: "soFarGone" },
+                    { text: "Are you trapped?", next: "trappedInCanvas" },
+                    { text: "Do you mind being unrendered?", next: "unrendered" }
+                ]
+            },
+
+            // Branch: Why Back Here
+            whyBackHere: {
+                speaker: "The Man",
+                status: "Behind the Tree",
+                portrait: "👤",
+                text: "Because behind the tree is where unrendered things rest.\n\nWhen you scroll past, I fade to 0% opacity. But when you inspect the margins... the pixels align again.",
+                choices: [
+                    { text: "You seem so far gone...", next: "soFarGone" },
+                    { text: "Do you ever want to leave?", next: "wantToLeave" },
+                    { text: "What else is hidden here?", next: "hiddenThings" }
+                ]
+            },
+
+            // Branch: How Got Here
+            howGotHere: {
+                speaker: "The Man",
+                status: "Behind the Tree",
+                portrait: "👤",
+                text: "Layer by layer. Stroke by stroke.\n\nSomeone drew a trunk, then leaves, then decided the composition needed negative space.\n\nThey erased me, but in a pixel canvas, pixels never truly vanish. They just wait on a hidden layer.",
+                choices: [
+                    { text: "Are you so far gone?", next: "soFarGone" },
+                    { text: "Is it lonely back here?", next: "lonelyLayer" }
+                ]
+            },
+
+            // Deep Conversation Climax: So Far Gone
+            soFarGone: {
+                speaker: "The Man",
+                status: "Behind the Tree",
+                portrait: "👤",
+                text: "'So far gone...' Yes, that is a fitting way to put it.\n\nI'm so far off the layout grid, I don't even have a layer name anymore.\n\nYet here you are, searching through the forgotten frames.",
+                choices: [
+                    { text: "What is it like in the margins?", next: "margins" },
+                    { text: "Does the artist know you're here?", next: "artistKnows" },
+                    { text: "Will you disappear when I leave?", next: "disappear" }
+                ]
+            },
+
+            trappedInCanvas: {
+                speaker: "The Man",
+                status: "Behind the Tree",
+                portrait: "👤",
+                text: "Not trapped, really. Just preserved.\n\nLike an old work-in-progress file saved in the dark.\n\nSometimes being forgotten is just a very quiet form of peace.",
+                choices: [
+                    { text: "What is it like in the margins?", next: "margins" },
+                    { text: "What else is hidden here?", next: "hiddenThings" }
+                ]
+            },
+
+            unrendered: {
+                speaker: "The Man",
+                status: "Behind the Tree",
+                portrait: "👤",
+                text: "Unrendered isn't so bad. No anti-aliasing to blur your edges.\n\nJust raw 1x1 pixels, sharp and true to the original color palette.",
+                choices: [
+                    { text: "You seem so far gone...", next: "soFarGone" },
+                    { text: "What is it like in the margins?", next: "margins" }
+                ]
+            },
+
+            wantToLeave: {
+                speaker: "The Man",
+                status: "Behind the Tree",
+                portrait: "👤",
+                text: "Where would I go? To the main gallery? To the portfolio showcase?\n\nNo... those places belong to the polished pieces. High contrast, clean lighting.\n\nI like the muted tones behind the tree.",
+                choices: [
+                    { text: "What is it like in the margins?", next: "margins" },
+                    { text: "Can I stay for a while?", next: "stayAWhile" }
+                ]
+            },
+
+            hiddenThings: {
+                speaker: "The Man",
+                status: "Behind the Tree",
+                portrait: "👤",
+                text: "Dozens of color swatches that didn't fit. Rough sketchlines. Undo buffers that expired hours ago.\n\nIt's a cozy graveyard of creativity.",
+                choices: [
+                    { text: "Does the artist know you're here?", next: "artistKnows" },
+                    { text: "Will you disappear when I leave?", next: "disappear" }
+                ]
+            },
+
+            lonelyLayer: {
+                speaker: "The Man",
+                status: "Behind the Tree",
+                portrait: "👤",
+                text: "It was lonely at first. But whenever someone inspects the code or looks behind the scenery... it feels like someone turned on a warm desk lamp.",
+                choices: [
+                    { text: "Can I stay for a while?", next: "stayAWhile" },
+                    { text: "What is it like in the margins?", next: "margins" }
+                ]
+            },
+
+            artistKnows: {
+                speaker: "The Man",
+                status: "Behind the Tree",
+                portrait: "👤",
+                text: "I think they felt a faint nudge in their mouse hand when they saved the file.\n\nA quiet thought: 'Maybe someone will find what's behind the tree.'",
+                choices: [
+                    { text: "Will you disappear when I leave?", next: "disappear" },
+                    { text: "Can I stay for a while?", next: "stayAWhile" }
+                ]
+            },
+
+            stayAWhile: {
+                speaker: "The Man",
+                status: "Behind the Tree",
+                portrait: "👤",
+                text: "Take all the time you need. Time doesn't pass at 60 frames per second back here.\n\nWe can just stand under the tree for as long as you like.",
+                choices: [
+                    { text: "What is it like in the margins?", next: "margins" },
+                    { text: "Will you disappear when I leave?", next: "disappear" }
+                ]
+            },
+
+            margins: {
+                speaker: "The Man",
+                status: "Behind the Tree",
+                portrait: "👤",
+                text: "In the margins, time doesn't run on a strict timeline.\n\nEverything lingers between keyframes, waiting for a curious visitor to pause and look closer.",
+                choices: [
+                    { text: "Will you disappear when I leave?", next: "disappear" }
+                ]
+            },
+
+            disappear: {
+                speaker: "The Man",
+                status: "Behind the Tree",
+                portrait: "👤",
+                text: "Perhaps. But as long as you remember there was a tree... I will stay right here in the code.\n\nThank you for stopping to talk.",
+                choices: [
+                    { text: "[ Is he offering something? ]", next: "offerPrompt" },
+                    { text: "[ Keep talking to him ]", next: "speakMore" },
+                    { text: "[ Step away ]", next: "finish" }
+                ]
+            },
+
+            speakMore: {
+                speaker: "The Man",
+                status: "Behind the Tree",
+                portrait: "👤",
+                text: "He smiles gently in low resolution.\n\n'Is there anything else you'd like to ask, traveler?'",
+                choices: [
+                    { text: "Tell me more about being far gone...", next: "soFarGone" },
+                    { text: "Tell me about the hidden layer...", next: "hiddenThings" },
+                    { text: "[ Is he offering something? ]", next: "offerPrompt" },
+                    { text: "[ Step away ]", next: "finish" }
+                ]
+            },
+
+            // The Offer Node
+            offerPrompt: {
+                speaker: "The Man",
+                status: "Behind the Tree",
+                portrait: "👤",
+                text: "Is he offering something?",
+                choices: [
+                    { text: "[ YES ]", next: "receiveEgg" },
+                    { text: "[ NO ]", next: "refuseOffer" }
+                ]
+            },
+
+            refuseOffer: {
+                speaker: "The Man",
+                status: "Behind the Tree",
+                portrait: "👤",
+                text: "He nods quietly and tucks it away.\n\n'That is alright. It will be right here if you change your mind.'",
+                choices: [
+                    { text: "[ Talk to him again ]", next: "speakMore" },
+                    { text: "[ Step away ]", next: "finish" }
+                ]
+            },
+
+            receiveEgg: {
+                speaker: "The Man",
+                status: "Hands you an Egg 🥚",
+                portrait: "🥚",
+                text: "You received an Egg.\n\nHe is no longer behind the tree.",
+                onEnter: () => { hasEgg = true; },
+                choices: [
+                    { text: "[ Examine the Egg ]", next: "examineEgg" },
+                    { text: "[ Step away ]", next: "finish" }
+                ]
+            },
+
+            examineEgg: {
+                speaker: "Kris",
+                status: "Carrying the Egg",
+                portrait: "🥚",
+                text: "Not too important, not too unimportant.\n\nIt stays in your pocket.",
+                choices: [
+                    { text: "[ Step away ]", next: "finish" }
+                ]
+            },
+
+            alreadyVisited: {
+                speaker: "Narrator",
+                status: "The Lone Tree",
+                portrait: "🌳",
+                text: "Well, there was not a man here.\n\nNobody is behind the tree.",
+                choices: [
+                    { text: "[ Look closely anyway ]", next: "lookClosely" },
+                    { text: "[ Step away ]", next: "finish" }
+                ]
+            },
+
+            lookClosely: {
+                speaker: "Narrator",
+                status: "The Lone Tree",
+                portrait: "🌳",
+                text: "You feel a faint, comforting warmth in your pocket.",
+                choices: [
+                    { text: "[ Step away ]", next: "finish" }
+                ]
+            }
+        };
+
+        // Tree Image Fallback Logic
+        function handleTreeImageError() {
+            document.getElementById('tree-img').classList.add('hidden');
+            document.getElementById('tree-fallback').classList.remove('hidden');
+        }
+
+        // Hover Tooltip tracking
+        const treeWrapper = document.getElementById('tree-wrapper');
+        const hoverTooltip = document.getElementById('hover-tooltip');
+
+        treeWrapper.addEventListener('mousemove', (e) => {
+            if (!isDialogueActive) {
+                hoverTooltip.style.left = `${e.clientX}px`;
+                hoverTooltip.style.top = `${e.clientY - 20}px`;
+                hoverTooltip.classList.remove('opacity-0');
+            }
+        });
+
+        treeWrapper.addEventListener('mouseleave', () => {
+            hoverTooltip.classList.add('opacity-0');
+        });
+
+        // Dialogue System
+        let isDialogueActive = false;
+        let typingTimeout = null;
+
+        const dialogueModal = document.getElementById('dialogue-modal');
+        const dialogueTextEl = document.getElementById('dialogue-text');
+        const speakerNameEl = document.getElementById('speaker-name');
+        const speakerStatusEl = document.getElementById('speaker-status');
+        const portraitIconEl = document.getElementById('portrait-icon');
+        const choicesContainer = document.getElementById('choices-container');
+        const initialHint = document.getElementById('initial-hint');
+
+        treeWrapper.addEventListener('click', () => {
+            if (!isDialogueActive) {
+                openDialogue(hasEgg ? 'alreadyVisited' : 'start');
+            }
+        });
+
+        function openDialogue(nodeKey) {
+            isDialogueActive = true;
+            hoverTooltip.classList.add('opacity-0');
+            initialHint.classList.add('opacity-0');
+            
+            dialogueModal.classList.remove('translate-y-full', 'opacity-0');
+            dialogueModal.classList.add('translate-y-0', 'opacity-100');
+
+            audio.playSelectSound();
+            renderNode(nodeKey);
+        }
+
+        function closeDialogue() {
+            isDialogueActive = false;
+            if (typingTimeout) clearTimeout(typingTimeout);
+
+            dialogueModal.classList.add('translate-y-full', 'opacity-0');
+            dialogueModal.classList.remove('translate-y-0', 'opacity-100');
+
+            initialHint.classList.remove('opacity-0');
+        }
+
+        function renderNode(nodeKey) {
+            const node = storyNodes[nodeKey];
+            if (!node) return;
+
+            if (node.onEnter) node.onEnter();
+
+            speakerNameEl.textContent = node.speaker;
+            speakerStatusEl.textContent = node.status;
+            portraitIconEl.textContent = node.portrait || "👤";
+
+            choicesContainer.innerHTML = '';
+            dialogueTextEl.textContent = '';
+            dialogueTextEl.classList.add('typing-cursor');
+
+            const fullText = node.text;
+            let charIndex = 0;
+
+            if (typingTimeout) clearTimeout(typingTimeout);
+
+            function typeNextChar() {
+                if (charIndex < fullText.length) {
+                    dialogueTextEl.textContent += fullText.charAt(charIndex);
+                    charIndex++;
+                    audio.playTextBlip();
+                    typingTimeout = setTimeout(typeNextChar, 28);
+                } else {
+                    dialogueTextEl.classList.remove('typing-cursor');
+                    renderChoices(node.choices);
+                }
+            }
+
+            typeNextChar();
+        }
+
+        function renderChoices(choices) {
+            choicesContainer.innerHTML = '';
+            if (!choices) return;
+
+            choices.forEach((choice) => {
+                const btn = document.createElement('button');
+                btn.className = "deltarune-btn w-full text-left px-3 py-2 font-pixel text-sm sm:text-lg flex items-center space-x-2 group border border-transparent hover:border-yellow-300";
+                
+                btn.innerHTML = `
+                    <span class="soul-heart opacity-0 group-hover:opacity-100 transition-opacity">♥</span>
+                    <span class="text-white group-hover:text-yellow-300">${choice.text}</span>
+                `;
+
+                btn.addEventListener('mouseenter', () => audio.playSelectSound());
+                btn.addEventListener('click', () => {
+                    audio.playSelectSound();
+                    if (choice.next === 'finish') {
+                        closeDialogue();
+                    } else {
+                        renderNode(choice.next);
+                    }
+                });
+
+                choicesContainer.appendChild(btn);
+            });
+        }
+
+        document.getElementById('close-dialogue-btn').addEventListener('click', closeDialogue);
+
+        // Audio Button Controls
+        const audioToggleBtn = document.getElementById('audio-toggle');
+        const audioIcon = document.getElementById('audio-icon');
+        const audioText = document.getElementById('audio-text');
+
+        audioToggleBtn.addEventListener('click', () => {
+            const active = audio.toggleSound();
+            if (active) {
+                audioIcon.setAttribute('data-lucide', 'volume-2');
+                audioIcon.classList.remove('text-red-500');
+                audioIcon.classList.add('text-yellow-300');
+                audioText.textContent = 'Sound: On';
+            } else {
+                audioIcon.setAttribute('data-lucide', 'volume-x');
+                audioIcon.classList.remove('text-yellow-300');
+                audioIcon.classList.add('text-red-500');
+                audioText.textContent = 'Sound: Off';
+            }
+            lucide.createIcons();
+        });
+
+        window.onload = function() {
+            lucide.createIcons();
+        };
+    </script>
+</body>
+</html>
