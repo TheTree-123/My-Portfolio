@@ -80,10 +80,29 @@
                  class="pixelated w-48 h-60 sm:w-64 sm:h-80 object-contain relative z-10"
                  onerror="handleTreeImageError()" />
 
-            <!-- Fallback Pixel Square (If image fails to load) -->
-            <div id="tree-fallback" class="hidden w-48 h-48 sm:w-64 sm:h-64 bg-red-950/80 flex flex-col items-center justify-center p-4 text-center relative z-10">
-                <span class="text-4xl mb-2">🌳</span>
-                <span class="font-pixel text-xs text-yellow-300">[TREE]</span>
+            <!-- Fallback Pixel Tree (Renders matching pixel tree graphics if mantree.gif is missing) -->
+            <div id="tree-fallback" class="hidden w-48 h-60 sm:w-64 sm:h-80 flex flex-col items-center justify-center relative z-10">
+                <svg viewBox="0 0 64 80" class="w-full h-full pixelated drop-shadow-md">
+                    <!-- Tree Trunk -->
+                    <path d="M26 50 h12 v25 h-12 z" fill="#3b1725"/>
+                    <path d="M28 52 h8 v23 h-8 z" fill="#240d16"/>
+                    <path d="M22 68 h6 v7 h-6 z" fill="#3b1725"/>
+                    <path d="M36 68 h6 v7 h-6 z" fill="#3b1725"/>
+                    <!-- Scarlet Forest Leaves Canopy -->
+                    <path d="M12 30 h40 v22 h-40 z" fill="#80152a"/>
+                    <path d="M8 34 h48 v14 h-48 z" fill="#80152a"/>
+                    <path d="M16 22 h32 v12 h-32 z" fill="#a81e36"/>
+                    <path d="M20 14 h24 v10 h-24 z" fill="#c92a46"/>
+                    <path d="M24 8 h16 v8 h-16 z" fill="#e63956"/>
+                    <!-- Highlights & Depth -->
+                    <path d="M22 10 h10 v4 h-10 z" fill="#ff5270"/>
+                    <path d="M18 18 h12 v4 h-12 z" fill="#e63956"/>
+                    <path d="M14 26 h14 v4 h-14 z" fill="#c92a46"/>
+                    <path d="M10 38 h12 v4 h-12 z" fill="#a81e36"/>
+                    <!-- Dark Base Shadow -->
+                    <path d="M10 46 h44 v6 h-44 z" fill="#540b1a"/>
+                    <path d="M14 50 h36 v4 h-36 z" fill="#3b0611"/>
+                </svg>
             </div>
 
             <!-- Ground Shadow -->
