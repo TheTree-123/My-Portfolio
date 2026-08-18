@@ -146,6 +146,11 @@
     </footer>
 
     <script>
+        // 2% chance to redirect to man.html on load or refresh
+        if (Math.random() < 0.02) {
+            window.location.href = 'man.html';
+        }
+
         const translations = {
             en: {
                 mainTitle: "MY PIXEL ART",
