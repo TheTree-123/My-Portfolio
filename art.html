@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabriel Perdue's Art Gallery</title>
+    <link rel="icon" type="image/x-icon" href="https://art.pixilart.com/sr5z5c55ac249caws3.png">
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&family=Jersey+15&family=Tiny5&display=swap" rel="stylesheet">
+    <!-- External stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <!-- External script -->
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <!-- Language Selector Dropdown Button -->
+    <div class="lang-control">
+        <label for="langSelect">🌐 Language:</label>
+        <select id="langSelect" onchange="changeLanguage(this.value)">
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="tp">Toki Pona</option>
+        </select>
+    </div>
+
+    <!-- Translation Disclaimer Banner -->
+    <div id="disclaimer" class="disclaimer-banner" style="display: none;">
+        ⚠️ Nota: La versión en español ha sido traducida automáticamente con Google Translate / Nota: Spanish translation provided via Google Translate.
+    </div>
+
+    <header>
+        <h1 id="main-title">ART GALLERY</h1>
+        <p id="sub-title">My Creations!</p>
+        <div class="nav-buttons">
+            <div class="status open"><a href="index.html" id="btn-home">Home</a></div>
+            <div class="status open"><a href="form.html" target="_blank" id="btn-commission">Commission Me!</a></div>
+            <div class="status open"><a href="blog.html" target="_blank" id="btn-blog">My Blog!</a></div>
+            <div class="status open"><a href="art.html" id="btn-art-gallery">Art Gallery!</a></div>
+            <div class="status open"><a href="music.html" id="btn-music-gallery">Music Gallery!</a></div>
+        </div>
+    </header>
+
+    <hr>
+
+    <!-- Blank Art Gallery Section -->
+    <section class="art-gallery-container" id="art-gallery-container">
+       <h2 id="gallery-title">Gallery*</h2>
+        <div class="gallery">
+            <div class="art-card">
+                <img src="https://art.pixilart.com/sr5z5c55ac249caws3.png" alt="Art">
+            </div>
+            <div class="art-card">
+                <img src="https://art.pixilart.com/sr5z0d6abad020aws3.png" alt="Art">
+            </div>
+            <div class="art-card">
+                <img src="https://art.pixilart.com/sr5z15e11fa0e5aws3.png" alt="Art">
+            </div>
+            <div class="art-card">
+                <img src="https://artr2.pixilart.com/cfr2754b223235aws3.png" alt="Art">
+            </div>
+            <div class="art-card">
+                <img src="enbyprof.png" alt="Pixel Art 5">
+            </div>
+            <div class="art-card">
+                <img src="https://artr2.pixilart.com/cfr206fde0468caws3.png" alt="Art">
+            </div>
+             <div class="art-card">
+                <img src="https://art.pixilart.com/sr5z0aa4f345e8aws3.png" alt="Pixel Art 1">
+                <h3 id="item-icons">Icons</h3>
+                <p id="price-icons">$3 - $5</p>
+            </div>
+            <div class="art-card">
+                <img src="placeholder.png" alt="Pixel Art 2">
+                <h3 id="item-sprites">Sprites</h3>
+                <p id="price-sprites">$5 - $10</p>
+            </div>
+            <div class="art-card">
+                <img src="placeholder.png" alt="Pixel Art 3">
+                <h3 id="item-sheets">Sprite Sheets</h3>
+                <p id="price-sheets">$10+</p>
+            </div>
+            <div class="art-card">
+                <img src="placeholder.png" alt="Pixel Art 4">
+                <h3 id="item-bg">Backgrounds</h3>
+                <p id="price-bg">$10 - $30</p>
+            </div>
+            <div class="art-card">
+                <img src="placeholder.png" alt="Pixel Art 5">
+                <h3 id="item-chars">Characters</h3>
+                <p id="price-chars">$15 - $35</p>
+            </div>
+            <div class="art-card">
+                <img src="placeholder.png" alt="Pixel Art 6">
+                <h3 id="item-other">Other</h3>
+                <p id="price-other">Let's talk!</p>
+            </div>
+        
+    </section>
+
+    <hr>
+
+    <footer>
+        <p id="footer-text">Oh, Hello!</p>
+    </footer>
+
+</body>
+</html>
