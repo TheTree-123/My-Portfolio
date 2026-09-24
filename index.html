@@ -8,6 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Jersey+10&family=Jersey+15&family=Tiny5&display=swap" rel="stylesheet">
     <!-- External stylesheet -->
     <link rel="stylesheet" href="style.css">
+    <!-- External script -->
+    <script src="script.js" defer></script>
 </head>
 <body>
 
@@ -30,6 +32,8 @@
         <h1 id="main-title">MY PIXEL ART</h1>
         <p id="sub-title">Portfolio!</p>
         <div class="nav-buttons">
+            <div class="status open"><a href="art.html" target="_blank" id="btn-art-gallery">Art Gallery!</a></div>
+            <div class="status open"><a href="music.html" target="_blank" id="btn-music-gallery">Music Gallery!</a></div>
             <div class="status open"><a href="form.html" target="_blank" id="btn-commission">Commission Me!</a></div>
             <div class="status open"><a href="blog.html" target="_blank" id="btn-blog">My Blog!</a></div>
         </div>
@@ -130,7 +134,7 @@
     </section>
 
     <hr>
-    
+
     <section class="contact">
         <h2 id="contact-title">My Info</h2>
         <p id="contact-intro">Please read my Terms of Service before ordering!</p>
@@ -145,180 +149,5 @@
         <p id="footer-text">Oh, Hello!</p>
     </footer>
 
-    <script>
-        // 2% chance to redirect to man.html on load or refresh
-        if (Math.random() < 0.02) {
-            window.location.href = 'man.html';
-        }
-
-        const translations = {
-            en: {
-                mainTitle: "MY PIXEL ART",
-                subTitle: "Portfolio!",
-                btnCommission: "Commission Me!",
-                btnBlog: "My Blog!",
-                galleryTitle: "My Work and Prices*",
-                itemIcons: "Icons",
-                priceIcons: "$3 - $5",
-                itemSprites: "Sprites",
-                priceSprites: "$5 - $10",
-                itemSheets: "Sprite Sheets",
-                priceSheets: "$10+",
-                itemBg: "Backgrounds",
-                priceBg: "$10 - $30",
-                itemChars: "Characters",
-                priceChars: "$15 - $35",
-                itemOther: "Other",
-                priceOther: "Let's talk!",
-                galleryNote: "*These are just common examples. Don't see what you need? DM me for any custom pixel work!",
-                tosTitle: "Terms of Service",
-                tosIntro: "By commissioning me, you agree to the following terms. Please read them carefully before submitting an order.",
-                tos1Head: "1. Payment & Process",
-                tos11: "All payments must be made in USD via PayPal, CashApp or Venmo.",
-                tos12: "50% payment is required upfront before I begin working.",
-                tos13: "Work will begin only after the invoice is cleared.",
-                tos2Head: "2. Revisions & Edits",
-                tos21: "You receive 2 free rounds of major revisions during the rough sketch/lining phase.",
-                tos22: "Minor color adjustments are free at any stage.",
-                tos23: "Major structural changes requested after the final render will incur an extra fee.",
-                tos3Head: "3. Refunds & Cancellation",
-                tos31: "A full refund is available if I have not started working on your piece.",
-                tos32: "A partial 50% refund is available if the project is cancelled during the sketch phase.",
-                tos33: "No refunds will be issued once the final pixel art rendering phase has begun.",
-                tos4Head: "4. Other",
-                tos41: "I will record my process if requested.",
-                tos42: "You are allowed to use my work in commercial products, but please credit me (My name and a link to this site will work great)!",
-                contactTitle: "My Info",
-                contactIntro: "Please read my Terms of Service before ordering!",
-                footerText: "Oh, Hello!"
-            },
-            es: {
-                mainTitle: "MI ARTE PIXEL",
-                subTitle: "¡Portafolio!",
-                btnCommission: "¡Haz tu pedido!",
-                btnBlog: "¡Mi Blog!",
-                galleryTitle: "Mi Trabajo y Precios*",
-                itemIcons: "Iconos",
-                priceIcons: "$3 - $5",
-                itemSprites: "Sprites",
-                priceSprites: "$5 - $10",
-                itemSheets: "Hojas de Sprites",
-                priceSheets: "$10+",
-                itemBg: "Fondos",
-                priceBg: "$10 - $30",
-                itemChars: "Personajes",
-                priceChars: "$15 - $35",
-                itemOther: "Otro",
-                priceOther: "¡Hablemos!",
-                galleryNote: "*Estos son solo ejemplos comunes. ¿No ves lo que necesitas? ¡Envíame un mensaje directo para cualquier trabajo en pixel art personalizado!",
-                tosTitle: "Términos de Servicio",
-                tosIntro: "Al hacerme un pedido, aceptas los siguientes términos. Por favor léelos con atención antes de enviar una solicitud.",
-                tos1Head: "1. Pago y Proceso",
-                tos11: "Todos los pagos deben realizarse en USD a través de PayPal, CashApp o Venmo.",
-                tos12: "Se requiere un pago del 50% por adelantado antes de empezar a trabajar.",
-                tos13: "El trabajo comenzará solo después de que se haya liquidado la factura.",
-                tos2Head: "2. Revisiones y Ediciones",
-                tos21: "Recibes 2 rondas gratuitas de revisiones mayores durante la fase de boceto/delineado.",
-                tos22: "Los ajustes menores de color son gratuitos en cualquier etapa.",
-                tos23: "Los cambios estructurales mayores solicitados después del renderizado final tendrán un costo adicional.",
-                tos3Head: "3. Reembolsos y Cancelación",
-                tos31: "Hay un reembolso completo disponible si no he empezado a trabajar en tu pieza.",
-                tos32: "Hay un reembolso parcial del 50% disponible si el proyecto se cancela durante la fase de boceto.",
-                tos33: "No se emitirán reembolsos una vez que haya comenzado la fase de renderizado final.",
-                tos4Head: "4. Otros",
-                tos41: "Grabaré mi proceso si se solicita.",
-                tos42: "Tienes permiso de usar mi trabajo en productos comerciales, pero por favor dame crédito (¡mi nombre y un enlace a este sitio funcionarán genial!).",
-                contactTitle: "Mi Información",
-                contactIntro: "¡Por favor lee mis Términos de Servicio antes de ordenar!",
-                footerText: "¡Oh, Hola!"
-            },
-            tp: {
-                mainTitle: "lipu sitelen mi",
-                subTitle: "lipu pi sitelen mi a!",
-                btnCommission: "mi pali a!",
-                btnBlog: "lipu mi a!",
-                galleryTitle: "pali mi*",
-                itemIcons: "sitelen lili",
-                priceIcons: "3 - 5 mani",
-                itemSprites: "sitelen",
-                priceSprites: "5 - 10 mani",
-                itemSheets: "sitelen mute",
-                priceSheets: "10+ mani",
-                itemBg: "sitelen mun",
-                priceBg: "10 - 30 mani",
-                itemChars: "sitelen jan",
-                priceChars: "15 - 35 mani",
-                itemOther: "ante",
-                priceOther: "mi ken toki a!",
-                galleryNote: "*ni li anpa. sina ken ala lukin e sitelen pilin anu seme? pana lipu toki tawa mi la mi pali e sitelen anu a!",
-                tosTitle: "sona lawa",
-                tosIntro: "sina wile toki tawa mi la sina o lukin e ni a!",
-                tos1Head: "1. mani",
-                tos11: "sina o pana mani USD tawa mi. sina o kepeken e PayPal, CashApp anu Venmo.",
-                tos12: "mi wile e mani 50%.",
-                tos13: "mi jo e mani 50% la mi pali e sitelen.",
-                tos2Head: "2. ante",
-                tos21: "sina jo e ante tu pi mani ala a!",
-                tos22: "ante kule li mani ala.",
-                tos23: "ante suli li mani mute.",
-                tos3Head: "3. pini",
-                tos31: "mi open ala e sitelen la sina ken jo e mani sina ale.",
-                tos32: "mi open e sitelen la sina ken jo e mani sina 50%.",
-                tos33: "mi pali e sitelen la sina ken ala jo e mani sina.",
-                tos4Head: "4. ante ante",
-                tos41: "sina wile e ni la mi ken sitelen e kalama tawa.",
-                tos42: "sina ken pali mani kepeken sitelen mi (sina o pana e nimi mi e nimi lipu ni).",
-                contactTitle: "sona mi",
-                contactIntro: "sina o lukin e sona lawa!",
-                footerText: "a, toki a!"
-            }
-        };
-
-        function changeLanguage(lang) {
-            const data = translations[lang];
-            if (!data) return;
-
-            document.getElementById('disclaimer').style.display = (lang === 'es') ? 'block' : 'none';
-
-            document.getElementById('main-title').innerText = data.mainTitle;
-            document.getElementById('sub-title').innerText = data.subTitle;
-            document.getElementById('btn-commission').innerText = data.btnCommission;
-            document.getElementById('btn-blog').innerText = data.btnBlog;
-            document.getElementById('gallery-title').innerText = data.galleryTitle;
-            document.getElementById('item-icons').innerText = data.itemIcons;
-            document.getElementById('price-icons').innerText = data.priceIcons;
-            document.getElementById('item-sprites').innerText = data.itemSprites;
-            document.getElementById('price-sprites').innerText = data.priceSprites;
-            document.getElementById('item-sheets').innerText = data.itemSheets;
-            document.getElementById('price-sheets').innerText = data.priceSheets;
-            document.getElementById('item-bg').innerText = data.itemBg;
-            document.getElementById('price-bg').innerText = data.priceBg;
-            document.getElementById('item-chars').innerText = data.itemChars;
-            document.getElementById('price-chars').innerText = data.priceChars;
-            document.getElementById('item-other').innerText = data.itemOther;
-            document.getElementById('price-other').innerText = data.priceOther;
-            document.getElementById('gallery-note').innerText = data.galleryNote;
-            document.getElementById('tos-title').innerText = data.tosTitle;
-            document.getElementById('tos-intro').innerText = data.tosIntro;
-            document.getElementById('tos-1-head').innerText = data.tos1Head;
-            document.getElementById('tos-1-1').innerText = data.tos11;
-            document.getElementById('tos-1-2').innerText = data.tos12;
-            document.getElementById('tos-1-3').innerText = data.tos13;
-            document.getElementById('tos-2-head').innerText = data.tos2Head;
-            document.getElementById('tos-2-1').innerText = data.tos21;
-            document.getElementById('tos-2-2').innerText = data.tos22;
-            document.getElementById('tos-2-3').innerText = data.tos23;
-            document.getElementById('tos-3-head').innerText = data.tos3Head;
-            document.getElementById('tos-3-1').innerText = data.tos31;
-            document.getElementById('tos-3-2').innerText = data.tos32;
-            document.getElementById('tos-3-3').innerText = data.tos33;
-            document.getElementById('tos-4-head').innerText = data.tos4Head;
-            document.getElementById('tos-4-1').innerText = data.tos41;
-            document.getElementById('tos-4-2').innerText = data.tos42;
-            document.getElementById('contact-title').innerText = data.contactTitle;
-            document.getElementById('contact-intro').innerText = data.contactIntro;
-            document.getElementById('footer-text').innerText = data.footerText;
-        }
-    </script>
 </body>
 </html>
